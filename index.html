@@ -1,0 +1,57 @@
+<!-- <meta charset="utf-8" http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=1.0, user-scalable=no"> -->
+<!DOCTYPE html >
+<html>
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=1.0, user-scalable=no" charset="utf-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.12.4/ui-grid.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body ng-app="myApp" ng-controller="homeCtrl" class="container-fluid">
+      <br><br><br>
+
+        <div class="container">
+            <div ng-repeat="t in tournament track by $index" ng-show="$index%2===0 && $index === myIndex" class="row">
+              <div class="col-sm-6">
+                <div ng-click="selectTeam(tournament[$index])" class="my-div">
+                    <img class="center-block" ng-src="{{tournament[$index].logo}}" alt="Responsive image">
+                    <br><br><br>
+                    <br><br><br>
+                    <br><br><br>
+                    <br><br><br>
+                    <br><br><br>
+                    <br><br><br>
+                    <h1 class="text-center">{{tournament[$index].name}}</h1>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div ng-click="selectTeam(tournament[$index])" class="my-div">
+                    <img class="center-block" ng-src="{{tournament[$index+1].logo}}" alt="Responsive image">
+                    <br><br><br>
+                    <br><br><br>
+                    <br><br><br>
+                    <br><br><br>
+                    <br><br><br>
+                    <br><br><br>
+                    <h1 class="text-center">{{tournament[$index+1].name}}</h1>
+                </div>
+              </div>
+            </div>
+            <br>
+            <pre>{{selections | json}}</pre>
+        </div>
+    </body>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.12.4/ui-grid.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.12.4/ui-grid.auto-resize.min.js"></script>
+    <script src="schoolData.js"></script>
+    <script src="script.js"></script>
+
+</html>
