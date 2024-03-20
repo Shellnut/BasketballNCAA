@@ -89,7 +89,7 @@ app.controller('homeCtrl', ['$scope', function($scope) {
         },
         {
             "name": "Northwestern",
-            "logo": "https://static.wikia.nocookie.net/ncaa-athletics/images/7/72/Northwestern_Wildcats.jpg/revision/latest?cb=20180311044308"
+            "logo": "https://sportslogohistory.com/wp-content/uploads/2018/08/northwestern_wildcats_2012-pres.png"
         },
         {
             "name": "San Diego St.",
