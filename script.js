@@ -2,19 +2,78 @@ const app = angular.module('myApp', []);
 
 app.controller('homeCtrl', ['$scope', function($scope) {
 
-    $scope.hello = 'hello';
-
+    // Initiate values
     $scope.myIndex = 0;
+    $scope.selections32 = [];
+    $scope.selections16 = [];
+    $scope.selections8 = [];
+    $scope.selections4 = [];
+    $scope.selections2 = [];
+    $scope.selections1 = [];
+    $scope.currentRound = 'Round of 64';
+    $scope.winner;
 
-    $scope.selections = [];
+    // Select team function
+    $scope.selectTeam = async function(winner, loser, index) {
 
-    $scope.selectTeam = function(test) {
-        console.log('team selected', test);
-        $scope.myIndex+=2;
-        $scope.selections.push(test.name)
-        $scope.tournament.push(test)
+        // Stop the count!!
+        if (index<126) {
+            $scope.myIndex+=2;
+        }
+
+        // winner and loser info for bracket
+        var info = {
+            winner: winner.name,
+            loser: loser.name
+        };
+
+        // this array determines the matchups
+        $scope.tournament.push(winner);
+
+        // this logic determines what the current round title should be
+        if (index < 62) {
+            $scope.currentRound = 'Round of 64';
+        }
+        else if (index >= 62 && index < 94) {
+            $scope.currentRound = 'Round of 32';        
+        }
+        else if (index >= 94 && index < 110) {
+            $scope.currentRound = 'Sweet 16';
+        }
+        else if (index >= 110 && index < 118) {
+            $scope.currentRound = 'Elite 8';
+        }
+        else if (index >= 118 && index < 122) {
+            $scope.currentRound = 'Final 4';
+        }
+        else if (index >= 122 && index < 124) {
+            $scope.currentRound = 'Championship';
+        }
+
+        // This logic shows a pretty JSON summary at the bottom
+        if (index < 64) {
+            $scope.selections32.push(info)
+        }
+        else if (index >= 64 && index < 96) {
+            $scope.selections16.push(info)
+        }
+        else if (index >= 96 && index < 112) {
+            $scope.selections8.push(info)
+        }
+        else if (index >= 112 && index < 120) {
+            $scope.selections4.push(info)
+        }
+        else if (index >= 120 && index < 124) {
+            $scope.selections2.push(info)
+        }
+        else if (index >= 124 && index < 126) {
+            $scope.winner = winner;
+            $scope.selections1.push(info)
+        }
+
     }
 
+    // Tournament data. This is a slim version of schoolData.js
     $scope.tournament = [
         {
             "name": "UConn",
@@ -30,7 +89,7 @@ app.controller('homeCtrl', ['$scope', function($scope) {
         },
         {
             "name": "Northwestern",
-            "logo": "https://i.turner.ncaa.com/sites/default/files/images/logos/schools/bgd/northwestern.svg"
+            "logo": "https://static.wikia.nocookie.net/ncaa-athletics/images/7/72/Northwestern_Wildcats.jpg/revision/latest?cb=20180311044308"
         },
         {
             "name": "San Diego St.",
@@ -54,7 +113,7 @@ app.controller('homeCtrl', ['$scope', function($scope) {
         },
         {
             "name": "Duquesne",
-            "logo": "https://i.turner.ncaa.com/sites/default/files/images/logos/schools/bgd/duquesne.svg"
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Duquesne_Dukes_logo.svg/1843px-Duquesne_Dukes_logo.svg.png"
         },
         {
             "name": "Illinois",
@@ -66,7 +125,7 @@ app.controller('homeCtrl', ['$scope', function($scope) {
         },
         {
             "name": "Washington St.",
-            "logo": "https://i.turner.ncaa.com/sites/default/files/images/logos/schools/bgd/washington-st.svg"
+            "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Washington_State_Cougars_logo.svg/1200px-Washington_State_Cougars_logo.svg.png"
         },
         {
             "name": "Drake",
@@ -90,7 +149,7 @@ app.controller('homeCtrl', ['$scope', function($scope) {
         },
         {
             "name": "Nebraska",
-            "logo": "https://i.turner.ncaa.com/sites/default/files/images/logos/schools/bgd/nebraska.svg"
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Nebraska_Cornhuskers_logo%2C_1992%E2%80%932003.svg/987px-Nebraska_Cornhuskers_logo%2C_1992%E2%80%932003.svg.png"
         },
         {
             "name": "Texas A&M",
@@ -98,7 +157,7 @@ app.controller('homeCtrl', ['$scope', function($scope) {
         },
         {
             "name": "Wisconsin",
-            "logo": "https://i.turner.ncaa.com/sites/default/files/images/logos/schools/bgd/wisconsin.svg"
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Wisconsin_Badgers_logo.svg/1200px-Wisconsin_Badgers_logo.svg.png"
         },
         {
             "name": "James Madison",
@@ -154,7 +213,7 @@ app.controller('homeCtrl', ['$scope', function($scope) {
         },
         {
             "name": "Mississippi St.",
-            "logo": "https://i.turner.ncaa.com/sites/default/files/images/logos/schools/bgd/mississippi-st.svg"
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Mississippi_State_Bulldogs_logo.svg/2560px-Mississippi_State_Bulldogs_logo.svg.png"
         },
         {
             "name": "Michigan St.",
@@ -166,7 +225,7 @@ app.controller('homeCtrl', ['$scope', function($scope) {
         },
         {
             "name": "Grand Canyon",
-            "logo": "https://i.turner.ncaa.com/sites/default/files/images/logos/schools/bgd/grand-canyon.svg"
+            "logo": "https://pbs.twimg.com/media/CH5TDubUkAA_Hg6.jpg"
         },
         {
             "name": "Alabama",
@@ -178,7 +237,7 @@ app.controller('homeCtrl', ['$scope', function($scope) {
         },
         {
             "name": "Clemson",
-            "logo": "https://i.turner.ncaa.com/sites/default/files/images/logos/schools/bgd/clemson.svg"
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Clemson_Tigers_logo.svg/1071px-Clemson_Tigers_logo.svg.png"
         },
         {
             "name": "New Mexico",
@@ -194,11 +253,11 @@ app.controller('homeCtrl', ['$scope', function($scope) {
         },
         {
             "name": "Dayton",
-            "logo": "https://i.turner.ncaa.com/sites/default/files/images/logos/schools/bgd/dayton.svg"
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Dayton_Flyers_logo.svg/1200px-Dayton_Flyers_logo.svg.png"
         },
         {
             "name": "Nevada",
-            "logo": "https://i.turner.ncaa.com/sites/default/files/images/logos/schools/bgd/nevada.svg"
+            "logo": "https://upload.wikimedia.org/wikipedia/en/2/21/Nevada_Wolf_Pack_logo.svg"
         },
         {
             "name": "Arizona",
@@ -206,7 +265,7 @@ app.controller('homeCtrl', ['$scope', function($scope) {
         },
         {
             "name": "Long Beach St.",
-            "logo": "https://i.turner.ncaa.com/sites/default/files/images/logos/schools/bgd/long-beach-st.svg"
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/2/29/Long_Beach_State_Athletics_logo.svg"
         },
         {
             "name": "Purdue",
@@ -218,11 +277,11 @@ app.controller('homeCtrl', ['$scope', function($scope) {
         },
         {
             "name": "Utah St.",
-            "logo": "https://i.turner.ncaa.com/sites/default/files/images/logos/schools/bgd/utah-st.svg"
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Utah_State_Aggies_logo.svg/640px-Utah_State_Aggies_logo.svg.png"
         },
         {
             "name": "TCU",
-            "logo": "https://i.turner.ncaa.com/sites/default/files/images/logos/schools/bgd/tcu.svg"
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/TCU_Horned_Frogs_logo.svg/1200px-TCU_Horned_Frogs_logo.svg.png"
         },
         {
             "name": "Gonzaga",
@@ -266,7 +325,7 @@ app.controller('homeCtrl', ['$scope', function($scope) {
         },
         {
             "name": "Tennessee",
-            "logo": "https://i.turner.ncaa.com/sites/default/files/images/logos/schools/bgd/tennessee.svg"
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Tennessee_Volunteers_logo.svg/2048px-Tennessee_Volunteers_logo.svg.png"
         },
         {
             "name": "Saint Peter's",

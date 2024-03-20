@@ -1,9 +1,13 @@
 img {
-    width: 300px;
+    width: 100%;
 }
 
 .my-div {
     width: 100%;
-    height: 100%;
-    border: 3px solid black;
+    height: 80vh;
+}
+
+.selected {
+    border: 5px solid blue;
+    background-color: lightblue;
 }
