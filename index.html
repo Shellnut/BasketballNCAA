@@ -12,7 +12,7 @@
 
     <body ng-app="myApp" ng-controller="homeCtrl" class="container-fluid">
         <div class="container">
-          <h1 class="text-center">2024 NCAA Tournament - {{currentRound}}</h1>
+          <h1 class="text-center">2025 NCAA Tournament - {{currentRound}}</h1>
             <div ng-repeat="t in tournament track by $index" ng-show="$index%2===0 && $index === myIndex" class="row" >
               <div class="col-sm-6">
                 <div ng-click="selectTeam(tournament[$index], tournament[$index+1], $index)" class="my-div" ng-mousedown="selected1='selected'" ng-class="selected1">
